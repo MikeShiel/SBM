@@ -1,0 +1,25 @@
+
+<%= simple_form_for @party, method: :get, url: new_party_path(bartender_id: @bartender.id), html: { id: 'home-form-show' } do |f| %>
+
+  <%= f.input :date, as: :string, required: true, input_html: { class: "datepicker"} %>
+   <%= f.input :address, :as => :hidden, :input_html => { :value => @party.address } %>
+    <%= f.input :bartender, :as => :hidden, label: false, input_html: { value: @bartender.id }%>
+
+
+  <%= button_tag type: :submit, class: 'btn-book' do %>
+    Book
+  <% end %>
+<% end %>
+
+<script type="text/javascript">
+
+  function initialize() {
+    var input = document.getElementById('party_address');
+    var autocomplete = new google.maps.places.Autocomplete(input);
+  }
+
+  google.maps.event.addDomListener(window, 'load', initialize);
+
+
+
+</script>

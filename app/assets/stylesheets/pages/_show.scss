@@ -1,0 +1,214 @@
+.wrapper-show {
+  margin-top: -78px;
+
+}
+
+.specialities {
+  border-top: 1px solid $gold;
+  padding-top: 25px;
+  margin-top: 25px;
+  .content {
+    display: flex;
+    width: 80%;
+    margin: auto;
+    justify-content: space-around;
+    .specialities-item{
+      text-align: center;
+      margin: 0 5px;
+      width: 20%;
+      .avatar-cocktail {
+        margin-bottom: 10px;
+      }
+    }
+  }
+}
+
+.profile-details{
+  display:inline-block;
+  h1{
+    margin-top: 0px;
+    margin-bottom: 50px;
+    color: $white;
+  }
+}
+
+.profile-block{
+  display: flex;
+  border-bottom: 1px solid $gold;
+  padding-bottom: 25px;
+  margin-bottom: 25px;
+
+  &:last-child{
+    border-bottom: 0;
+  }
+
+  .header{
+    min-width:200px;
+
+    text-align: left;
+    h2{
+      font-size: 25px;
+    }
+  }
+  .content {
+    flex-grow: 1;
+  }
+
+}
+
+#cropped_avatar {
+ object-fit: cover;
+}
+
+.pricing{
+  background-color: $gold;
+  color: $white;
+  text-align: center;
+  padding: 30px;
+
+
+  h1{
+    margin-top: 0px;
+  }
+
+  h2{
+    padding: 0px;
+    margin: 0px;
+    }
+
+  h3{
+    margin: 0px;
+  }
+}
+
+.booking-basics{
+  padding: 30px;
+  border: 1px solid $gold;
+
+  h2 {
+    margin-top: 0;
+  }
+
+
+  .form-control{
+    height: 50px;
+    display: block;
+    width: 100%;
+    background-color: $brown;
+    color: $white;
+    border:none;
+    border-radius: 6px;
+  }
+
+  .btn-book{
+    background-color: $brown;
+    color: $white;
+    width: 100%;
+    border-radius: 6px;
+    border: none;
+    font-size: 15px;
+    height: 50px;
+    &:hover{
+      color: $gold;
+    }
+  }
+}
+
+.specialities{
+  h1 {
+  text-decoration: underline;
+  padding-bottom: 5px;
+  text-align: left;
+  font-size: 20px;
+  }
+}
+
+.reviews{
+  padding-top: 10px;
+
+  #review_content{
+    height: 80px;
+    width: 100%;
+    background-color: $brown;
+    color: $white;
+    border:none;
+    border-radius: 6px;
+  }
+
+  #review_rating{
+    height: 50px;
+    width: 100px;
+    background-color: $brown;
+    color: $white;
+    border:none;
+    border-radius: 6px;
+  }
+  .button-add-review{
+    background-color: $brown;
+    color: $white;
+    width: 62%;
+    border-radius: 6px;
+    border: none;
+    margin: 10px;
+    font-size: 15px;
+    height: 50px;
+  }
+  .button-add-review:hover{
+    color: $gold;
+  }
+}
+
+.reviews-item{
+  border-bottom: 1px solid $gold;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+
+.btn-expand{
+    background-color: $brown;
+    color: $white;
+    border-radius: 6px;
+    border: none;
+    font-size: 15px;
+    height: 50px;
+    display: block;
+    margin: 20px auto;
+
+    &:hover{
+      color: $gold;
+    }
+}
+
+.reviews-expanded-list{
+  display: none;
+}
+
+#new_review{
+  padding: 20px 0;
+}
+
+.glass-big{
+  font-size: 16px;
+}
+
+.glasses-show{
+  padding-top: 20px;
+  padding-left: 0;
+  width: 200px;
+}
+
+.slide-column.affix{
+  top: 16px;
+  width: 262.5px;
+  position: fixed;
+}
+
+.slide-column.affix-bottom{
+  bottom: auto;
+  width: 262.5px;
+  position: fixed;
+}
+
+.bartender-info{
+  font-size:18px;
+}

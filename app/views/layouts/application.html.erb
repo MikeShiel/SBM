@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
+    <%= favicon_link_tag 'favicon.ico' %>
+    <title>
+      <%= yield(:title) %>
+    </title>
+      <meta name="description" content="<%= meta_description %>">
+    <!-- Facebook Open Graph data -->
+    <meta property="og:title" content="<%= meta_title %>" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="<%= request.original_url %>" />
+    <meta property="og:image" content="<%= meta_image %>" />
+    <meta property="og:description" content="<%= meta_description %>" />
+    <meta property="og:site_name" content="<%= meta_title %>" />
+    <meta property="fb:app_id" content="146199722582139"/>
+
+
+
+
+
+
+    <%= csrf_meta_tags %>
+    <%= action_cable_meta_tag %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=AIzaSyAykvEu0LmFaVZkIUlw84fgMSxh_QFpcn8"></script>
+
+    <%= javascript_include_tag 'application' %>
+  </head>
+  <body>
+    <%= render 'shared/navbar' %>
+    <%= yield %>
+
+
+
+    <%= render 'shared/footer' %>
+
+
+  </body>
+</html>

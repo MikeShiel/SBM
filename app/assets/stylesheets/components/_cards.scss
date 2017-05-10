@@ -1,0 +1,119 @@
+.card-container {
+  width: 340px;
+}
+
+.card-container:hover  {
+  opacity: 1;
+
+}
+
+.card {
+  display: block;
+  margin:20px;
+  width: 300px;
+  background: white;
+  padding: 20px;
+  font-weight: 300;
+  box-shadow: 2px 2px 2px rgba(1,1,1,0.5);
+  height: 425px;
+
+  &:hover {
+    box-shadow: 2px 2px 2px rgba(169, 146, 103, 0.5);
+    .card-body,
+    .card-footer {
+      color: $gold;
+
+    }
+  }
+}
+
+.card-back {
+  padding: 10px;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(255,255,255,0.9);
+  transition: all 200ms ease;
+  text-align: center;
+  line-height: 2;
+  display: block;
+  overflow: hidden;
+}
+
+.card-back a {
+  text-decoration: none;
+  font-style: italic;
+  font-weight: 500;
+  color: #333333;
+  opacity: 0.8;
+  transition: opacity 200ms ease;
+
+  &:hover {
+    opacity: 1;
+  }
+
+}
+
+.card-back-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  .smaller-avatar-cocktail{
+    margin-right: 10px;
+  }
+}
+
+.card-image {
+  background-size: cover;
+  height: 100%;
+  background-position: center center;
+}
+
+.card-body {
+  height: 300px;
+  position: relative;
+
+}
+
+.card-container:hover .card-back {
+  opacity: 1;
+
+}
+
+.card-footer {
+  padding-top: 20px;
+  color: $brown;
+   &:visited{
+    color: $brown;
+   }
+}
+
+.card-footer-reviews{
+  white-space: nowrap;
+   .fa-comment{
+    padding: 2px;
+   }
+}
+
+.card-footer-rating{
+  padding-top: 5px;
+}
+
+.card-footer-flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card .social a {
+  text-decoration: none;
+  color: #333333;
+}
+
+.card .social {
+  flex: 0 0 70%;
+  display: flex;
+  justify-content: space-between;
+}

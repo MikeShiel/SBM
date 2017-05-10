@@ -1,0 +1,43 @@
+/* -------------------------------------
+ * Your CSS code for flash notices and alerts
+* ------------------------------------- */
+
+.alert {
+  margin: 0;
+  text-align: center;
+  color: white;
+}
+.alert-info {
+  background: $green;
+}
+.alert-warning {
+  background: $red;
+}
+.alert-error {
+    background-color: $alert-light-pink;
+    border-color: $alert-darker-pink;
+    color: $alert-red-brown;
+    text-align: center;
+    font-size: 18px;
+ }
+
+.alert-alert {
+    background-color: $alert-light-pink;
+    border-color: $alert-darker-pink;
+    color: $alert-red-brown;
+    text-align: left;
+ }
+
+.alert-success {
+    background-color: $alert-light-green;
+    border-color: $alert-darker-green;
+    color: $alert-very-light-green;
+    text-align: left;
+ }
+
+.alert-notice {
+    background-color: $alert-light-green;
+    border-color: $alert-darker-green;
+    color: $alert-very-light-green;
+    text-align: left;
+ }

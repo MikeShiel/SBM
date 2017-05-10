@@ -1,0 +1,121 @@
+#home-form {
+  background-color: rgba(255,255,255,0);
+  padding-top: 15%;
+  padding-bottom: 15%;
+  // padding-right: 2%;
+  // padding-left: 2%;
+  border-radius: 10px;
+
+  ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    padding-left: 4px;
+    color: $dark-grey !important;
+    }
+    ::-moz-placeholder { /* Firefox 19+ */
+    color: $dark-grey !important;
+    }
+    :-ms-input-placeholder { /* IE 10+ */
+    color: $dark-grey !important;
+    }
+    :-moz-placeholder { /* Firefox 18- */
+    color: $dark-grey !important;
+  }
+
+  .form-control {
+    // margin-top: 20px;
+    padding: 15px;
+    margin-top: 20px;
+    width: 62%;
+    color: $dark-grey;
+    margin: auto;
+    opacity: 0.9;
+    border: none;
+  }
+
+  .btn-search{
+    background-color: $brown;
+    color: white;
+    width: 62%;
+    border-radius: 3px;
+    border: none;
+    margin: 10px;
+    font-size: 15px;
+    height: 50px;
+  }
+
+  .btn-search:hover{
+    color: $gold;
+  }
+}
+
+.button-home:hover {
+  color: $gold;
+}
+
+.button-home {
+  background-color: $brown;
+  color: white;
+  width: 100%;
+  border-radius: 10px;
+  border: none;
+  margin: 10px;
+}
+
+.button-add-event{
+  background-color: $brown;
+  color: white;
+  width: 100%;
+  border-radius: 10px;
+  border: none;
+  margin: 10px;
+}
+
+.button-add-event:hover {
+  color: $gold;
+}
+
+.button-message{
+  background-color: $brown;
+  color: $white;
+  width: 100%;
+  border-radius: 10px;
+  border: none;
+  margin: 10px;
+}
+
+.button-message:hover {
+  color: $gold;
+}
+
+.button-favorites{
+  background-color: $brown;
+  color: $white;
+  width: 100%;
+  border-radius: 10px;
+  border: none;
+  margin: 10px;
+}
+
+.button-favorites:hover {
+  color: $gold;
+}
+
+.button-add-review{
+  background-color: $brown;
+  color: white;
+  width: 40%;
+  border-radius: 10px;
+  border: none;
+  margin: auto;
+}
+
+.button-add-review:hover {
+   background-color: $brown;
+  color: $white;
+  width: 40%;
+  border-radius: 10px;
+  border: none;
+  margin: auto;
+}
+
+
+

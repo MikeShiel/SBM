@@ -1,0 +1,285 @@
+<%= simple_form_for @party, remote: true, html: { id: 'home-form-show' } do |f| %>
+  <div class="col-md-6">
+    <div class="slider-form">
+        <div class="about-you">
+          <h3>1. About you</h3>
+          <%= f.simple_fields_for :user do |u| %>
+            <%= u.input :first_name, label: false, required: true, placeholder: 'Name', wrapper_html: { class: '' }, input_html: { class: "about-you-block"} %>
+           <%= u.input :last_name, label: false, required: true, placeholder: 'Surname', wrapper_html: { class: '' }, input_html: { class: "about-you-block"} %>
+           <%= u.input :email, label: false, disabled: true, required: true, wrapper_html: { class: '' }, input_html: { class: "about-you-block"} %>
+           <%= u.input :phone_number, label: false, required: true, placeholder: 'Contact Number', wrapper_html: { class: '' }, input_html: { class: "about-you-block"} %>
+          <% end %>
+        </div>
+        <div class="about-your-party">
+          <h3>2. About your party</h3>
+          <div class="wrapper-date-time">
+            <%= f.input :start_time, label: "At what time is your party?",as: :string, required: true, placeholder: '21:00',  input_html: { class: "about-your-party-time"} %>
+              <%= f.input :date, label: false, disabled: true, as: :string, input_html: { class: "about-your-party-block"}%>
+          </div>
+          <%= f.input :address, label: "Where is your party?", placeholder: 'Address', required: true, input_html: { class: "about-your-party-block"} %>
+          <%= f.input :zip_code, placeholder: 'Zip code', required: true, label: false, input_html: { class: "about-your-party-block"}  %>
+          <%= f.input :city, placeholder: 'City', label: false, required: true, input_html: { class: "about-your-party-block"}  %>
+          <%= f.input :country, prompt: 'Germany', label: false, required: true, priority: [ 'DE' ], input_html: { class: "about-your-party-block"}  %>
+          <%= f.input :date, :as => :hidden, label: false, placeholder: '21:00', wrapper_html: { class: '' }, input_html: { class: "input form-input-index"} %>
+          <%= f.input :theme, collection: Party::TYPES, as: :hidden, label: false, prompt: "Type of Party" %>
+
+          <%= f.input :date, :as => :hidden, label: false, placeholder: '21:00'%>
+          <%= f.input :bartender, :as => :hidden, label: false, input_html: { value: @bartender.id }%>
+          <%= f.input :size, placeholder: 'Number of guests', label: false, required: true, input_html: { class: "about-your-party-block"} %>
+          <%= f.input_field :agreed, as: :boolean, required: true %><span class="labelText"> I understand that Superbarman can only throw the perfect party if the number of guests is accurate.</span>
+
+         <!--  <%#= f.input_field :agreed, required: true, as: :boolean, boolean_style: :inline %> <span class="labelText">The given number of guests is as accurate as I can provide to ensure a good bartender to guest ratio.</span> -->
+         </div>
+         <br>
+        <div class= "bartender-message">
+        <%= f.input :message, placeholder: 'I want a special mojito!', label: "Say hello to your bartender and provide more details about your party!", input_html: { class: "bartender-message-block"} %>
+        <% #Insert Address auto-complete form here %>
+        <div class="text-center">
+          <%= button_tag type: :submit, class: "btn-booking-confirm" do %>
+            Confirm and Pay
+          <% end %>
+        </div>
+        </div>
+    </div>
+  </div>
+  <div class="col-md-4 col-xs-offset-2">
+    <div class="summary-wrapper booking-summary" data-spy="affix" data-offset-top="158" data-offset-bottom="450">
+      <%= image_tag('london2.jpg', style: "width: 100%;") %>
+      <div class="bartender-name">
+      Your bartender: <strong><%= @party.bartender.name %></strong>
+      </div>
+      <div class="bartender-title">
+      <%= @party.bartender.title %>
+      </div>
+      <div class="bartender-location">
+      <%= @party.bartender.location %>
+      </div>
+      <div class="bartender-rating">
+         <% @bartender.rating.times do %>
+            <i class="fa fa-glass golder" aria-hidden="true"></i>
+          <% end %>
+          <% (5 - @bartender.rating).times do %>
+            <i class="fa fa-glass blacker" aria-hidden="true"></i>
+          <% end %>
+      </div>
+      <hr class="booking-line">
+      <div class="cocktails">
+        <div class="content">
+          <% @bartender.cocktails.each do |cocktail|  %>
+            <div class="specialities-item">
+              <%= image_tag cocktail.picture, class: 'small-avatar-cocktail-new' %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <hr class="booking-line">
+      <div class="party-date">
+      <% if @party.theme == "" %>
+      <% @party.theme = "Party" %>
+      <% end %>
+      <%= pretty_date(@party.date) %> - <%= @party.theme %>
+      </div>
+      <hr class="booking-line">
+      <div class="booking-billing">
+        <table class="billing">
+          <t class="body">
+            <tr class="price-item">
+                <td class="bartender-service">
+                  Bartender service:
+                </td>
+                <td><span></span></td>
+                <td class="price">
+                  50€
+                </td>
+              </tr>
+              <tr class="welcome-cocktails">
+                <td class="details">
+               <i>Includes 5 free welcome cocktails of your choice.</i>
+                </td>
+              </tr>
+              <tr>
+                <td class="moreinfo">
+               Cocktails will be sold at 5€ during the event.
+              </td>
+              </tr>
+          </t>
+        </table>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+            $('.about-your-party-time').timepicker(
+              'setTime', '9:00 PM');
+        </script>
+    <script type="text/javascript">
+     $(document).ready(function() {
+  var flat_address = $('#party_address').get(0);
+  if (flat_address) {
+    var autocomplete = new google.maps.places.Autocomplete(flat_address, { types: ['geocode'] });
+    google.maps.event.addListener(autocomplete, 'place_changed', onPlaceChanged);
+    google.maps.event.addDomListener(flat_address, 'keydown', function(e) {
+      if (e.keyCode == 13) {
+        e.preventDefault(); // Do not submit the form on Enter.
+      }
+    });
+  }
+});
+function onPlaceChanged() {
+  var place = this.getPlace();
+  var components = getAddressComponents(place);
+  $('#party_address').trigger('blur').val(components.address);
+  $('#party_zip_code').val(components.zip_code);
+  $('#party_city').val(components.city);
+  if (components.country_code) {
+    $('#party_country').val(components.country_code);
+  }
+}
+function getAddressComponents(place) {
+  // If you want lat/lng, you can look at:
+  // - place.geometry.location.lat()
+  // - place.geometry.location.lng()
+  var street_number = null;
+  var route = null;
+  var zip_code = null;
+  var city = null;
+  var country_code = null;
+  for (var i in place.address_components) {
+    var component = place.address_components[i];
+    for (var j in component.types) {
+      var type = component.types[j];
+      if (type == 'street_number') {
+        street_number = component.long_name;
+      } else if (type == 'route') {
+        route = component.long_name;
+      } else if (type == 'postal_code') {
+        zip_code = component.long_name;
+      } else if (type == 'locality') {
+        city = component.long_name;
+      } else if (type == 'country') {
+        country_code = component.short_name;
+      }
+    }
+  }
+  return {
+    address: street_number == null ? route : (street_number + ' ' + route),
+    zip_code: zip_code,
+    city: city,
+    country_code: country_code
+  };
+}
+    </script>
+
+<script>
+
+  var EVENTS = 'focusout keyup change';
+  var EMAIL_PATTERN =/^([^\.@]+)(\.([^@]+))?@([^@]+)\.([^@]+)$/;
+  var ZIP_CODE_PATTERN = /^\d{3,5} ?[a-zA-Z]*$/;
+  var MOBILE_PHONE_PATTERN = /1?\W*([2-9][0-8][0-9])\W*([2-9][0-9]{2})\W*([0-9]{4})(\se?x?t?(\d*))?/;
+  var NAME_PATTERN = /^([a-zA-z]+[,.]?[ ]?|[a-zA-z]+['-]?)+$/;
+
+
+  function checkIsFilled(input, add_class) {
+  var filled = false;
+  if ($(input).attr('type') == "checkbox") {
+    filled = $(input).is(':checked');
+  } else if ($(input).is(':focus')) {
+    filled = true;
+  } else {
+    filled = $(input).val().length > 0;
+  }
+  if (add_class) {
+    addClass(input, filled);
+  }
+  return filled;
+}
+function checkZipCode(input) {
+  var zip_code = $(input).val();
+  addClass(input, zip_code.match(ZIP_CODE_PATTERN));
+}
+function checkEmail(input) {
+  var email = $(input).val();
+  addClass(input, email.match(EMAIL_PATTERN));
+}
+function checkMobilePhone(input) {
+  var mobile_phone = $(input).val();
+  addClass(input, mobile_phone.match(MOBILE_PHONE_PATTERN));
+}
+function checkFirstName(input) {
+  var first_name = $(input).val();
+  addClass(input, first_name.match(NAME_PATTERN));
+}
+function checkLastName(input) {
+  var last_name = $(input).val();
+  addClass(input, last_name.match(NAME_PATTERN));
+}
+function addClass(input, remove) {
+  var button = $('button[type=submit]');
+
+  var form_group = $(input).parents('.form-group');
+  if (remove) {
+    form_group.removeClass('has-error');
+    if ($(input).val().length > 0) {
+
+      form_group.addClass('has-success');
+    }
+  } else {
+
+    form_group.addClass('has-error').removeClass('has-success');
+  }
+   activateButton();
+}
+
+function activateButton() {
+  var button = $('button[type=submit]');
+  if ($('.form-group.has-error').length >= 1) {
+    var enable = false;
+        button.attr('disabled', 'disabled').html('Please fill all fields');
+      return;
+  }
+  else {
+      button.removeAttr('disabled').html('Submit');
+       return;
+    }
+}
+function onReady() {
+  $('form input, form textarea').on(EVENTS, function(e) {
+    if (e.target.id != 'zip_code' &&
+        e.target.id != 'email' &&
+        e.target.id != 'mobile_phone' &&
+        e.target.id != 'first_name' &&
+        e.target.id != 'last_name')
+    {
+      checkIsFilled(e.target, true);
+    }
+  });
+  $('#party_zip_code').on(EVENTS, function(e) {
+    checkZipCode(e.target);
+    console.log("hey George");
+  });
+  $('#email').on(EVENTS, function(e) {
+    checkEmail(e.target);
+  });
+  $('#party_user_attributes_phone_number').on(EVENTS, function(e) {
+    checkMobilePhone(e.target);
+  });
+  $('#party_user_attributes_first_name').on(EVENTS, function(e) {
+    checkFirstName(e.target);
+  });
+  $('#party_user_attributes_last_name').on(EVENTS, function(e) {
+    checkLastName(e.target);
+  });
+}
+$(document).ready(onReady);
+</script>
+<!-- <script type="text/javascript">
+  $(document).ready(function(){
+    $('.datepicker').datepicker();
+    $('.slider-form').slick({
+      dots: true,
+      arrows: true
+    });
+  });
+</script>
+ -->

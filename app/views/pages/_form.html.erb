@@ -1,0 +1,28 @@
+<%= simple_form_for @party, url: "/bartenders/search", method: :get, html: { id: 'home-form' } do |f| %>
+  <div class="home-form">
+    <%= f.input :theme, collection: Party::TYPES, label: false, prompt: " What Type of Party?", input_html: { class: "input form-input-index", 'data-content'=> 'hello'  }%>
+  </div>
+
+<!--  -->
+
+  <%= f.input :date, label: false, placeholder: "When?", as: :string, input_html: { class: "datepicker" } %>
+
+  <%= f.input :city, collection: Party::CITIES, label: false, prompt: ' Where?', wrapper_html: { class: '' }, input_html: { class: "input form-input-index", id: "location-show" } %>
+
+
+
+  <div class="">
+    <%= button_tag type: :submit, class: "btn-search" do %>
+      Get Your Party Started
+    <% end %>
+  </div>
+<% end %>
+
+
+<!-- Autocomplete Google Form (removed)
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.datepicker').datepicker();
+  });
+</script>
+ -->

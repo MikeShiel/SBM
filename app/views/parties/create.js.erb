@@ -1,0 +1,18 @@
+var handler = StripeCheckout.configure({
+  key: "<%= j Rails.configuration.stripe[:publishable_key] %>",
+  image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+  locale: 'auto',
+  name: "Superbarman",
+  description: "<%= j "#{@party.theme} - #{@party.date}"%>",
+  amount: <%= @party.price_cents %>,
+  currency: "<%= j @party.price.currency.to_s %>",
+  email: "<%= j current_user.email %>",
+  token: function(token) {
+    console.log(token);
+    $.post( "<%= j party_payments_path(@party) %>", { token: token }, function(){
+      window.location.href = "<%= j party_path(@party) %>"
+    });
+  }
+});
+
+handler.open();

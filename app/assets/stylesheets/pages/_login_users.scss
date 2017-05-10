@@ -1,0 +1,64 @@
+.wrapper-login {
+  hr {
+    border: 2px solid $gold;
+  }
+}
+
+form {
+  .form-group {
+    position: relative;
+    .form-control {
+      height: 50px;
+    }
+    i {
+      color: grey;
+      position: absolute;
+      right: 14px;
+      top: 17px;
+      z-index: 1;
+    }
+  }
+}
+
+.form-group.password {
+  margin: 0;
+}
+
+
+.or-separator {
+  background: $white;
+  height: 34px;
+  position: relative;
+  text-align: center;
+  hr {
+    margin-top: -25px;
+  }
+}
+
+.or-separator-text {
+  background-color: $white;
+  display: inline-block;
+  padding: 8px;
+}
+
+.form-under {
+  margin: 8px 2px;
+
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  .forget-password {
+    margin-top: 10px;
+    color: $brown;
+  }
+  a:hover {
+    color: $gold !important;
+    opacity: 0.6;
+  }
+
+}
+
+.new-account {
+  display: flex;
+  justify-content: space-between;
+}

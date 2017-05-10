@@ -1,0 +1,80 @@
+
+.form-control.btn-search {
+  min-width: 0;
+  background-color: #272424;
+  padding: 10px 10px;
+  color: white;
+  vertical-align: center;
+}
+
+
+$btn-height: 50px;
+$btn-vertical-padding: 10px;
+
+
+.btn-std {
+  background-color: $brown;
+  height: $btn-height;
+  padding: $btn-vertical-padding 10px;
+  line-height: calc(#{$btn-height} - #{$btn-vertical-padding * 2});
+  color: $white !important;
+  border: none;
+  display: block;
+  width: 15vw;
+  border-radius: 5px;
+  text-align: center;
+    &:hover {
+    color: $gold !important;
+  }
+}
+
+.btn-facebook {
+  background-color: $facebook-blue;
+  height: $btn-height;
+  padding: $btn-vertical-padding 10px;
+  line-height: calc(#{$btn-height} - #{$btn-vertical-padding * 2});
+  color: white;
+  display: block;
+  width: 100%;
+  border-radius: 5px;
+  i {
+    padding: 0 60px 0 20px;
+  }
+    &:hover {
+    color: $gold !important;
+  }
+    &:visited{
+    color: white;
+    }
+}
+
+.btn-login {
+  background-color: $brown;
+  height: $btn-height;
+  padding: $btn-vertical-padding 10px;
+  line-height: calc(#{$btn-height} - #{$btn-vertical-padding * 2});
+  color: $white;
+  border: none;
+  display: block;
+  width: 100%;
+  border-radius: 5px;
+    &:hover {
+    color: $gold !important;
+  }
+}
+
+.btn-register {
+  background-color: $white;
+  height: $btn-height;
+  padding: $btn-vertical-padding 10px;
+  line-height: calc(#{$btn-height} - #{$btn-vertical-padding * 2});
+  color: $brown !important;
+  display: block;
+  width: 30%;
+  border: 2px solid $brown;
+  border-radius: 5px;
+  &:hover {
+    color: $gold !important;
+    border: 2px solid $gold;
+  }
+}

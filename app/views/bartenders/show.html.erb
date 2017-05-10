@@ -1,0 +1,141 @@
+<% content_for :meta_title, "#{@bartender.title} - #{@bartender.name}" %>
+<% content_for :meta_description, "#{@bartender.bio}" %>
+<% content_for :meta_image, "#{image_url @bartender.picture}" %>
+
+
+<% if flash[:notice] %>
+    <div class="alert-error"><%= flash[:notice] %></div>
+  <% end %>
+
+  <% content_for :title, "#{@bartender.name} - #{@bartender.title}" %>
+
+<div class="show-banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.2) 0%, rgba(0,36,61,0.3) 50%), url(<%= image_url 'london2.jpg' %>);"></div>
+
+
+
+<div class="container">
+ <div class="wrapper-show">
+
+
+  <div class="row">
+    <!-- LEFT COLUMN -->
+    <div class="col-md-8 profile-details">
+
+      <!-- PROFILE -->
+      <div class="row">
+        <div class="col-xs-4">
+          <%= image_tag @bartender.picture, class: 'avatar-largest', id: "cropped_avatar"%>
+          <div class="col-xs-6 glasses-show text-center">
+            <% @bartender.rating.times do %>
+              <i class="fa fa-glass golder glass-big text-center" aria-hidden="true"></i>
+            <% end %>
+
+            <% (5 - @bartender.rating).times do %>
+              <i class="fa fa-glass blacker glass-big" aria-hidden="true"></i>
+            <% end %>
+            <div>
+              <a href="" id="comments">Comments (<%= @bartender.reviews.count %>)</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-6">
+           <h1 class= ""> <%= @bartender.title %> </h1>
+          <div class="row">
+            <div class="col-xs-8">
+              <p class= "bartender-info"> </i> <%= "#{@bartender.name}" %> </p>
+              <p class= "bartender-info"> </i> <%= @bartender.location %> </p>
+              <p class="bartender-info">
+                Languages:
+              <% @bartender.languages.split.each do |language| %>
+                <%= image_tag "#{language}.png", size: "25x25" %>
+              <% end %>
+              </p>
+            </div>
+          </div>
+          <br>
+          <br>
+        </div>
+      </div>
+
+      <!-- SPECIALTIES -->
+      <div class=" profile-block specialities">
+        <div class= "header">
+          <h2>Top Cocktails</h2>
+        </div>
+        <div class= "content">
+          <% @bartender.cocktails.each do |cocktail|  %>
+          <div class="specialities-item">
+            <%= image_tag cocktail.picture, class: 'avatar-cocktail' %>
+            <div><%= cocktail.name %></div>
+          </div>
+          <% end %>
+        </div>
+      </div>
+
+
+
+      <!-- BIO -->
+      <div class="profile-block bio">
+        <div class= "header">
+          <h2>About</h2>
+        </div>
+        <div class= "content">
+          <p class= ""> <%= @bartender.bio %> </p>
+        </div>
+      </div>
+
+
+
+      <!-- REVIEWS -->
+      <div class="profile-block reviews" id="review">
+        <div class= "header">
+          <h2>Comments</h2>
+        </div>
+        <div class= "content">
+          <% unless @bartender.reviews.map(&:content).all?(&:nil?)  %>
+            <% @bartender.reviews.limit(5).each do |review| %>
+              <%= render partial: 'bartenders/show/review', locals: {review: review} %>
+            <% end %>
+
+            <div class="reviews-expanded-list">
+              <% @bartender.reviews.offset(5).each do |review| %>
+                <%= render partial: 'bartenders/show/review', locals: {review: review} %>
+              <% end %>
+            </div>
+
+            <button class="btn btn-expand" id="btn-expand-reviews"> Show more reviews</button>
+          <% end %>
+
+          <%#= render 'reviews/new' %>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT COLUMN -->
+    <div class="col-md-3 col-md-offset-1 xs-hidden">
+      <div class="slide-column" data-spy="affix" data-offset-top="270" data-offset-bottom="472">
+        <div class="pricing">
+          <h1>€50</h1>
+          <h2>+</h2>
+          <h3>€5 per cocktail</h3>
+        </div>
+        <div class="booking-basics">
+          <h2> Book Your Bartender</h2>
+          <%= render 'bartenders/show/form' %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+</div>
+
+<script>
+  $('#comments').click(function(e){
+    e.preventDefault();
+  $('#review')[0].scrollIntoView(true);
+  });
+</script>
+
